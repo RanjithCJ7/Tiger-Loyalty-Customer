@@ -41,70 +41,78 @@ class _Home_NewUserState extends State<Home_NewUser> {
                         }
                       },
                       child: points
-                          ? Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Image.asset('assets/welcome_bg.png'),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 30),
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        'assets/welcome.png',
+                          ? Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: MediaQuery.of(context).size.width * 0.9,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(height: 50.0),
+                                    Image.asset(
+                                      'assets/welcome.png',
+                                    ),
+                                    const SizedBox(height: 30.0),
+                                    Text(
+                                      'Welcome to Tiger Loyalty',
+                                      style: welcomeTitle,
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.7,
+                                      child: Text(
+                                        'Lorem ipsum dolor sit amet consectetur. Eget vitae aenean risus aliquet elit turpis quam. Ut tellus tincidunt hendrerit venenatis. Sed integer semper felis felis eros lobortis risus.',
+                                        style: welcomeDesc,
+                                        textAlign: TextAlign.center,
                                       ),
-                                      const SizedBox(height: 30.0),
-                                      Text(
-                                        'Welcome to Tiger Loyalty',
-                                        style: welcomeTitle,
-                                      ),
-                                      const SizedBox(height: 20.0),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 30),
-                                        child: Text(
-                                          'Lorem ipsum dolor sit amet consectetur. Eget vitae aenean risus aliquet elit turpis quam. Ut tellus tincidunt hendrerit venenatis. Sed integer semper felis felis eros lobortis risus.',
-                                          style: welcomeDesc,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             )
-                          : Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Image.asset('assets/welcome_bg.png'),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 30),
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        'assets/welcome.png',
+                          : Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: MediaQuery.of(context).size.width * 0.9,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(height: 50.0),
+                                    Image.asset(
+                                      'assets/welcome.png',
+                                    ),
+                                    const SizedBox(height: 30.0),
+                                    Text(
+                                      'Welcome to Tiger Loyalty 2',
+                                      style: welcomeTitle,
+                                    ),
+                                    const SizedBox(height: 20.0),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.7,
+                                      child: Text(
+                                        'Lorem ipsum dolor sit amet consectetur. Eget vitae aenean risus aliquet elit turpis quam. Ut tellus tincidunt hendrerit venenatis. Sed integer semper felis felis eros lobortis risus.',
+                                        style: welcomeDesc,
+                                        textAlign: TextAlign.center,
                                       ),
-                                      const SizedBox(height: 30.0),
-                                      Text(
-                                        'Welcome to Tiger Loyalty 2',
-                                        style: welcomeTitle,
-                                      ),
-                                      const SizedBox(height: 20.0),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 30),
-                                        child: Text(
-                                          'Lorem ipsum dolor sit amet consectetur. Eget vitae aenean risus aliquet elit turpis quam. Ut tellus tincidunt hendrerit venenatis. Sed integer semper felis felis eros lobortis risus.',
-                                          style: welcomeDesc,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                     ),
-                    const SizedBox(height: 30.0),
+                    const SizedBox(height: 40.0),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
@@ -127,7 +135,7 @@ class _Home_NewUserState extends State<Home_NewUser> {
                                   style: startBtnText),
                             ),
                           ),
-                          const SizedBox(height: 10.0),
+                          const SizedBox(height: 20.0),
                           SizedBox(
                             width: size.width,
                             height: 44,
