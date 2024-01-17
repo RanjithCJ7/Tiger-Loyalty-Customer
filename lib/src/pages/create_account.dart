@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tl_customer/const/Image.dart';
-import 'package:tl_customer/src/pages/change_profile.dart';
+import 'package:tl_customer/screens/signup/component/change_profile.dart';
 import 'styles.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -16,7 +16,7 @@ class _CreateAccountState extends State<CreateAccount> {
     Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => ChangeProfile(),
+          builder: (context) => ChangeProfile(token: ""),
         ),
       );
     });
@@ -58,4 +58,3 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 }
-

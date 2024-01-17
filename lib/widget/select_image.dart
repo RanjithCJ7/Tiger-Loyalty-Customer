@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tl_customer/src/pages/styles.dart';
@@ -14,7 +13,77 @@ class ImageUploadHelper {
   ///Image Picker
   Future<void> showImagePicker(
       BuildContext context, Function(XFile?) onImagePicked) async {
-    // chooseOption(context);
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.close(1);
+                  },
+                  child: Image.asset('assets/close.png'),
+                ),
+              ],
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'change_profile_pic'.tr,
+                    style: changeLabel,
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    child: TextButton(
+                      onPressed: () async {
+                        Get.close(1);
+                        XFile? file = await imgFromGallery();
+                        onImagePicked(file);
+                      },
+                      style: btnGrey,
+                      child: Text(
+                        'choose_photo'.tr,
+                        style: btnGreyText,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5.0),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    child: TextButton(
+                      onPressed: () async {
+                        Get.close(1);
+                        XFile? file = await imgFromCamera();
+                        onImagePicked(file);
+                      },
+                      style: btnGrey,
+                      child: Text(
+                        'take_picture'.tr,
+                        style: btnGreyText,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1)
+          ],
+        );
+      },
+    );
   }
 
   ///----- Crop Image Picker
@@ -37,7 +106,7 @@ class ImageUploadHelper {
         cropStyle: isCircleProfile ? CropStyle.circle : CropStyle.rectangle,
         uiSettings: [
           AndroidUiSettings(
-              toolbarTitle: 'cropper',
+              toolbarTitle: '',
               toolbarColor: Colors.black,
               toolbarWidgetColor: Colors.white,
               initAspectRatio: CropAspectRatioPreset.original,
@@ -68,17 +137,18 @@ class ImageUploadHelper {
       maxWidth: 720,
       maxHeight: 1280,
     );
-    File f = File(image!.path);
+    // File f = File(image!.path);
 
-    var fileSizeLimit = 3072;
-    var s = f.lengthSync();
-    var fileSizeInKB = s / 1024;
+    // var fileSizeLimit = 3072;
+    // var s = f.lengthSync();
+    // var fileSizeInKB = s / 1024;
 
-    if (fileSizeInKB > fileSizeLimit) {
-      Fluttertoast.showToast(msg: "Please select image size less than 3MB");
-    } else {
-      return image;
-    }
+    // if (fileSizeInKB > fileSizeLimit) {
+    //   Fluttertoast.showToast(msg: "Please select image size less than 3MB");
+    // } else {
+    //   return image;
+    // }
+    return image;
   }
 
   Future<XFile?> imgFromCamera() async {
@@ -89,31 +159,35 @@ class ImageUploadHelper {
       maxHeight: 1280,
     );
 
-    File f = File(image!.path);
+    // File f = File(image!.path);
 
-    var fileSizeLimit = 3072;
-    var s = f.lengthSync();
-    var fileSizeInKB = s / 1024;
+    // var fileSizeLimit = 3072;
+    // var s = f.lengthSync();
+    // var fileSizeInKB = s / 1024;
 
-    if (fileSizeInKB > fileSizeLimit) {
-      Fluttertoast.showToast(msg: "Please select image size less than 3MB");
-    } else {
-      // if (image != null) {
-      //   // Rotate the image to fix the wrong rotation coming from ImagePicker
-      //   File rotatedImage =
-      //       await FlutterExifRotation.rotateImage(path: image.path);
-      //   print("return rotated");
-      //   return XFile(rotatedImage.path); //Return the file
-      // }
-      // print("normal");
-      return image;
-    }
+    // if (fileSizeInKB > fileSizeLimit) {
+    //   Fluttertoast.showToast(msg: "Please select image size less than 3MB");
+    // } else {
+    //   // if (image != null) {
+    //   //   // Rotate the image to fix the wrong rotation coming from ImagePicker
+    //   //   File rotatedImage =
+    //   //       await FlutterExifRotation.rotateImage(path: image.path);
+    //   //   print("return rotated");
+    //   //   return XFile(rotatedImage.path); //Return the file
+    //   // }
+    //   // print("normal");
+    //   return image;
+    // }
+    return image;
   }
 
   chooseOption(BuildContext context, bool isCircleProfile,
       Function(XFile?) onImagePicked) {
     showModalBottomSheet(
       context: context,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       builder: (BuildContext context) {
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -124,7 +198,7 @@ class ImageUploadHelper {
               children: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Get.close(1);
                   },
                   child: Image.asset('assets/close.png'),
                 ),
@@ -136,7 +210,7 @@ class ImageUploadHelper {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Change Profile Picture',
+                    'change_profile_pic'.tr,
                     style: changeLabel,
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -145,13 +219,13 @@ class ImageUploadHelper {
                     height: MediaQuery.of(context).size.height * 0.06,
                     child: TextButton(
                       onPressed: () async {
-                        Navigator.of(context).pop();
+                        Get.close(1);
                         XFile? file = await imgFromGallery();
                         cropImage(file, onImagePicked, isCircleProfile);
                       },
                       style: btnGrey,
                       child: Text(
-                        'Choose Photo',
+                        'choose_photo'.tr,
                         style: btnGreyText,
                         textAlign: TextAlign.center,
                       ),
@@ -163,13 +237,13 @@ class ImageUploadHelper {
                     height: MediaQuery.of(context).size.height * 0.06,
                     child: TextButton(
                       onPressed: () async {
-                        Navigator.of(context).pop();
+                        Get.close(1);
                         XFile? file = await imgFromCamera();
                         cropImage(file, onImagePicked, isCircleProfile);
                       },
                       style: btnGrey,
                       child: Text(
-                        'Take picture',
+                        'take_picture'.tr,
                         style: btnGreyText,
                         textAlign: TextAlign.center,
                       ),

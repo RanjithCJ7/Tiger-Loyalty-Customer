@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 import 'package:tl_customer/const/Image.dart';
 import 'package:tl_customer/src/pages/no_internet.dart';
 import 'styles.dart';
@@ -13,7 +15,7 @@ class _Submit_Redeem_State extends State<Submit_Redeem> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => Failure(),
@@ -34,7 +36,7 @@ class _Submit_Redeem_State extends State<Submit_Redeem> {
               height: 92,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Color(0xFF000000),
+                  color: const Color(0xFF000000),
                   width: 1.0,
                 ),
                 borderRadius: BorderRadius.circular(46),
@@ -42,7 +44,7 @@ class _Submit_Redeem_State extends State<Submit_Redeem> {
               child: Image.asset(Images.loadingGIF),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 20.0),
+              margin: const EdgeInsets.only(bottom: 20.0),
               child: Text(
                 'Please wait...',
                 style: label,
@@ -65,13 +67,11 @@ class Failure extends StatefulWidget {
 }
 
 class _FailureState extends State<Failure> {
+  double rating = 0.0;
+
   @override
   void initState() {
     super.initState();
-
-    Future.delayed(Duration(seconds: 2), () {
-      // Add relevant actions upon failure if needed
-    });
   }
 
   @override
@@ -83,166 +83,24 @@ class _FailureState extends State<Failure> {
           children: [
             Image.asset('assets/warning.png'),
             const SizedBox(height: 15),
-            Text('FAILED', style: alertTitle),
+            Text('failed'.tr, style: alertTitle),
             const SizedBox(height: 20),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.07,
+            SizedBox(
+              width: Get.width * 0.8,
+              height: Get.height * 0.07,
               child: Text(
-                'You transaction has failed',
+                'transaction_failed'.tr,
                 style: greyText2,
                 textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 15),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.07,
+            SizedBox(
+              width: Get.width * 0.8,
+              height: Get.height * 0.07,
               child: TextButton(
                 onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height - 125.0,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(5),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: <Widget>[
-                                      const Spacer(),
-                                      const SizedBox(width: 20),
-                                      Text('Review', style: filterText),
-                                      const Spacer(),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Image.asset('assets/close.png'),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 50.0),
-                                Stack(
-                                  children: [
-                                    Image.asset('assets/waikiki.png'),
-                                    Positioned(
-                                      bottom: 0,
-                                      right: 0,
-                                      child: Image.asset('assets/lc_check.png'),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 15),
-                                Text('LC Waikiki', style: pointsDesc),
-                                const SizedBox(height: 30),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.8,
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                        width: 1.0,
-                                        color: Color(0XFFD9D9D9),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 30),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text('Please rate your experience',
-                                        style: desc),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset('assets/star_inactive.png'),
-                                        const SizedBox(width: 5),
-                                        Image.asset('assets/star_inactive.png'),
-                                        const SizedBox(width: 5),
-                                        Image.asset('assets/star_inactive.png'),
-                                        const SizedBox(width: 5),
-                                        Image.asset('assets/star_inactive.png'),
-                                        const SizedBox(width: 5),
-                                        Image.asset('assets/star_inactive.png')
-                                      ],
-                                    ),
-                                    const SizedBox(height: 40),
-                                    Text(
-                                        'Have something to say? Please drop a comment',
-                                        style: desc),
-                                    const SizedBox(height: 10),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      child: TextField(
-                                        maxLines: 2,
-                                        decoration: InputDecoration(
-                                          hintText: '',
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5.0),
-                                            borderSide: BorderSide(
-                                              color: Color(0xFFD9D9D9),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.07,
-                                      child: TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  No_Internet(),
-                                            ),
-                                          );
-                                        },
-                                        style: btnGrey,
-                                        child: Text('Post', style: label_sm2),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 40),
-                                    Container(
-                                      child: Center(
-                                        child: TextButton(
-                                          onPressed: () {},
-                                          child: Column(
-                                            children: [
-                                              Image.asset('assets/share.png'),
-                                              const SizedBox(height: 10),
-                                              Text('Share receipt')
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: 30),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
+                  submitReviewBottomSheet();
                 },
                 style: btnGrey,
                 child: Text('Try again', style: label_sm2),
@@ -252,5 +110,152 @@ class _FailureState extends State<Failure> {
         ),
       ),
     );
+  }
+
+  void submitReviewBottomSheet() {
+    rating = 0.0;
+    Get.bottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.white,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12))), SingleChildScrollView(
+      child: StatefulBuilder(builder: (context, setState) {
+        return Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Review', style: filterText),
+                    ],
+                  ),
+                ),
+                SizedBox(height: Get.height * 0.05),
+                SizedBox(
+                  width: Get.width * 0.2,
+                  child: Stack(
+                    children: [
+                      Align(
+                        child: Container(
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: const Color(0xFFD9D9D9), width: 2)),
+                          child: Image.asset('assets/waikiki.png'),
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Image.asset('assets/lc_check.png'))
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Text('LC Waikiki', style: pointsDesc),
+                const SizedBox(height: 30),
+                Container(
+                  width: Get.width * 0.8,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1.0,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('rate_experience'.tr, style: desc),
+                    const SizedBox(height: 15),
+                    SmoothStarRating(
+                      onRatingChanged: (value) {
+                        setState(() {
+                          rating = value;
+                        });
+                      },
+                      allowHalfRating: true,
+                      starCount: 5,
+                      rating: rating,
+                      size: 30.0,
+                      color: Colors.black,
+                      borderColor: Colors.black,
+                      spacing: 0.0,
+                    ),
+                    const SizedBox(height: 40),
+                    Text('comment'.tr, style: desc),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: Get.width * 0.8,
+                      child: TextField(
+                        maxLines: 2,
+                        decoration: InputDecoration(
+                          hintText: '',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: const BorderSide(
+                              color: Color(0xFFD9D9D9),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: Get.width * 0.8,
+                      height: Get.height * 0.07,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => No_Internet(),
+                            ),
+                          );
+                        },
+                        style: btnGrey,
+                        child: Text('post'.tr, style: label_sm2),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    Center(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Column(
+                          children: [
+                            Image.asset('assets/share.png'),
+                            const SizedBox(height: 10),
+                            Text('share_receipt'.tr)
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 30),
+              ],
+            ),
+            Positioned(
+              top: 10,
+              right: 10,
+              child: InkWell(
+                onTap: () {
+                  Get.close(1);
+                },
+                child: Image.asset('assets/close.png'),
+              ),
+            ),
+          ],
+        );
+      }),
+    ));
   }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "635977977863",
+    "project_id": "tiger-loyalty-4da34",
+    "storage_bucket": "tiger-loyalty-4da34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635977977863:android:03599ca129b4fe1d60daa2",
+        "android_client_info": {
+          "package_name": "com.tigerloyalty.customer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAERcVjGIBbZboKJYL_CE3TtFKqAuRa6PU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tl_customer/src/pages/bottom_tab.dart';
+import 'package:tl_customer/screens/bottomTab/component/bottom_tab.dart';
+
 import 'styles.dart';
 
 class RewardTableModel {

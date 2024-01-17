@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tl_customer/const/my_appbar.dart';
 import 'package:tl_customer/src/pages/brands.dart';
-import 'package:tl_customer/src/pages/profile.dart';
+import 'package:tl_customer/screens/profile/component/profile.dart';
 import 'package:tl_customer/src/pages/redeem.dart';
 import 'package:tl_customer/src/pages/rewards.dart';
 import 'styles.dart';

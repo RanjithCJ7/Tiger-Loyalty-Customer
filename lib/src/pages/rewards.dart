@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:tl_customer/const/Image.dart';
 import 'package:tl_customer/const/my_appbar.dart';
 import 'package:tl_customer/src/pages/brands.dart';
-import 'package:tl_customer/src/pages/profile.dart';
-import 'package:tl_customer/src/pages/promo.dart';
+import 'package:tl_customer/screens/profile/component/profile.dart';
+import 'package:tl_customer/screens/promo/component/promo.dart';
 import 'package:tl_customer/src/pages/redeem.dart';
 import 'package:tl_customer/src/pages/submit.dart';
 import 'package:tl_customer/src/pages/submit_redeem.dart';
@@ -918,13 +920,8 @@ class _Rewards_State extends State<Rewards> {
         context,
         title: Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Hello Juma,', style: label.copyWith(color: Colors.black))
-            ],
-          ),
+          child: Text('${"hello".tr} Juma,',
+              style: label.copyWith(color: Colors.black)),
         ),
       ),
       body: SafeArea(
@@ -942,7 +939,7 @@ class _Rewards_State extends State<Rewards> {
                         children: [
                           Stack(
                             children: [
-                              Container(
+                              /* Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.width * 0.4,
                                 child: Image.asset('assets/rectangle_1.png'),
@@ -950,15 +947,23 @@ class _Rewards_State extends State<Rewards> {
                               Positioned(
                                 bottom: 0,
                                 child: Image.asset('assets/rectangle_2.png'),
-                              ),
+                              ), */
+                              SizedBox(
+                                  height: Get.height * 0.18,
+                                  width: Get.width,
+                                  child: Image.asset(
+                                    Images.background,
+                                    fit: BoxFit.fill,
+                                  )),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 25),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const SizedBox(height: 30.0),
+                                    SizedBox(height: Get.height * 0.025),
                                     Text('Reward wallet', style: imgLabel),
-                                    const SizedBox(height: 15.0),
+                                    SizedBox(height: Get.height * 0.015),
                                     Row(
                                       children: [
                                         Column(
@@ -1015,7 +1020,7 @@ class _Rewards_State extends State<Rewards> {
                                         Image.asset('assets/search.png'),
                                         const SizedBox(width: 10),
                                         SizedBox(
-                                          width: size.width * 0.3,
+                                          width: size.width * 0.45,
                                           height: 24,
                                           child: TextField(
                                             decoration: const InputDecoration(
@@ -1080,7 +1085,7 @@ class _Rewards_State extends State<Rewards> {
                       )),
                       const SizedBox(height: 30.0),
                       ListView.separated(
-                        padding: const EdgeInsets.only(top: 10),
+                        // padding: const EdgeInsets.only(top: 10),
                         shrinkWrap: true,
                         itemCount: reward_Data.length,
                         separatorBuilder: (context, index) => const Divider(
@@ -1088,14 +1093,14 @@ class _Rewards_State extends State<Rewards> {
                         itemBuilder: (context, index) {
                           var data = reward_Data[index];
                           return Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            height: MediaQuery.of(context).size.height * 0.055,
+                            // padding: const EdgeInsets.symmetric(horizontal: 5),
+                            height: Get.height * 0.055,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                TextButton(
-                                  onPressed: () {
+                                GestureDetector(
+                                  onTap: () {
                                     _navigateToScreen(context, 'Pizza Hut',
                                         reward_Data[index]);
                                   },
@@ -1105,12 +1110,14 @@ class _Rewards_State extends State<Rewards> {
                                         width: size.width * 0.1,
                                         child: Image.asset(data.image),
                                       ),
-                                      SizedBox(width: 10),
+                                      const SizedBox(width: 10),
                                       SizedBox(
-                                        width: size.width * 0.5,
+                                        width: size.width * 0.55,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             Text(data.points,
                                                 style: pointsBold),
@@ -1123,12 +1130,12 @@ class _Rewards_State extends State<Rewards> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: size.width * 0.2,
+                                  width: size.width * 0.15,
                                   child: Visibility(
                                     visible: data.days.isNotEmpty,
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Text(data.days, style: dayText),
                                         const SizedBox(height: 5),
@@ -1147,7 +1154,7 @@ class _Rewards_State extends State<Rewards> {
                 ),
               ),
             ),
-            Container(
+            /* Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
               decoration: BoxDecoration(
                 color: Color(0xFFD9D9D9),
@@ -1220,6 +1227,7 @@ class _Rewards_State extends State<Rewards> {
                 ],
               ),
             ),
+           */
           ],
         ),
       ),

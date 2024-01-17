@@ -1,499 +1,499 @@
 import 'package:flutter/material.dart';
 
-final TextStyle splashText = TextStyle(
+TextStyle splashText = const TextStyle(
   fontFamily: 'Spartan',
   fontSize: 16,
   fontWeight: FontWeight.w400,
   color: Color(0xFFCFAF4E),
 );
 
-final TextStyle welcomeTitle = TextStyle(
+TextStyle welcomeTitle = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   fontWeight: FontWeight.w700,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle welcomeDesc = TextStyle(
+TextStyle welcomeDesc = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFFFFFFFF),
 );
 
-final TextStyle startText = TextStyle(
+TextStyle startText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
-final TextStyle startBtnText = TextStyle(
+TextStyle startBtnText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
 
-final TextStyle label = TextStyle(
+TextStyle label = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 20,
   fontWeight: FontWeight.w700,
 );
-final TextStyle label_sm = TextStyle(
+TextStyle label_sm = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
-final TextStyle label_sm2 = TextStyle(
+TextStyle label_sm2 = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w400,
   color: Color(0xFF000000),
 );
-final TextStyle label_sm3 = TextStyle(
+TextStyle label_sm3 = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle desc = TextStyle(
+TextStyle desc = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF808080),
 );
-final TextStyle desc2 = TextStyle(
+TextStyle desc2 = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
   color: Color(0xFF000000),
 );
-final TextStyle descGold = TextStyle(
+TextStyle descGold = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w700,
   color: Color(0xFFCFAF4E),
 );
 
-final TextStyle textFieldStyle = TextStyle(
+TextStyle textFieldStyle = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
 
-final TextStyle forgotLabel = TextStyle(
+TextStyle forgotLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF000000),
 );
-final TextStyle resetBtnText = TextStyle(
+TextStyle resetBtnText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF0E2ED4),
 );
-final TextStyle orText = TextStyle(
+TextStyle orText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w400,
   color: Color(0xFF000000),
 );
-final TextStyle btnGoldText = TextStyle(
+TextStyle btnGoldText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
-final TextStyle btnGoldText2 = TextStyle(
+TextStyle btnGoldText2 = TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w700,
-  color: Color(0xFF000000).withOpacity(0.5),
+  color: const Color(0xFF000000).withOpacity(0.5),
 );
 
-final TextStyle btnGreyText = TextStyle(
+TextStyle btnGreyText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w400,
   color: Color(0xFF000000),
 );
-final TextStyle smText = TextStyle(
+TextStyle smText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF000000),
 );
-final TextStyle boldText = TextStyle(
+TextStyle boldText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w700,
   color: Color(0xFF0E2ED4),
 );
-final TextStyle selectBtnBold = TextStyle(
+TextStyle selectBtnBold = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
-final TextStyle selectBtnSm = TextStyle(
+TextStyle selectBtnSm = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
   color: Color(0xFF000000),
 );
-final TextStyle alertTitle = TextStyle(
+TextStyle alertTitle = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 20,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
-final TextStyle dialogTextSm = TextStyle(
+TextStyle dialogTextSm = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
   color: Color(0xFF808080),
 );
-final TextStyle textDark = TextStyle(
+TextStyle textDark = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF000000),
 );
-final TextStyle textGrey = TextStyle(
+TextStyle textGrey = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
-  color: const Color(0xFF808080),
+  color: Color(0xFF808080),
 );
-final TextStyle subsDark = TextStyle(
+TextStyle subsDark = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF000000),
 );
-final TextStyle subsWhite = TextStyle(
+TextStyle subsWhite = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle numBig = TextStyle(
+TextStyle numBig = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 34,
   fontWeight: FontWeight.w700,
 );
-final TextStyle labelSm = TextStyle(
+TextStyle labelSm = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 18,
   fontWeight: FontWeight.w900,
 );
 
-final TextStyle labelWhite = TextStyle(
+TextStyle labelWhite = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 20,
   fontWeight: FontWeight.w700,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle dropDownText = TextStyle(
+TextStyle dropDownText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w400,
   color: Color(0xFF808080),
 );
-final TextStyle dropMenuText = TextStyle(
+TextStyle dropMenuText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle likeText = TextStyle(
+TextStyle likeText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 8,
   fontWeight: FontWeight.w300,
-  color: const Color(0xFFFFFFFF),
+  color: Color(0xFFFFFFFF),
 );
 
-final TextStyle footerText = TextStyle(
+TextStyle footerText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 8,
   fontWeight: FontWeight.w700,
-  color: const Color(0xFF000000),
+  color: Color(0xFF000000),
 );
-final TextStyle notificationText = TextStyle(
+TextStyle notificationText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 8,
   fontWeight: FontWeight.w400,
-  color: const Color(0xFFFFFFFF),
+  color: Color(0xFFFFFFFF),
 );
 
-final TextStyle pointsText = TextStyle(
+TextStyle pointsText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
 );
 
-final TextStyle approveText = TextStyle(
+TextStyle approveText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
 
-final TextStyle imgLabel = TextStyle(
+TextStyle imgLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   fontWeight: FontWeight.w700,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle imgNum = TextStyle(
+TextStyle imgNum = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 26,
   fontWeight: FontWeight.w700,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle imgDesc = TextStyle(
+TextStyle imgDesc = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w300,
   color: Color(0xFFCFAF4E),
 );
-final TextStyle dealText = TextStyle(
+TextStyle dealText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w700,
   color: Color(0xFFCFAF4E),
 );
 
-final TextStyle imgDescRed = TextStyle(
+TextStyle imgDescRed = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w300,
   color: Color(0xFFCA1818),
 );
-final TextStyle imgDescDark = TextStyle(
+TextStyle imgDescDark = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w300,
   color: Color(0xFF000000),
 );
-final TextStyle todayText = TextStyle(
+TextStyle todayText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF808080),
 );
-final TextStyle dateText = TextStyle(
+TextStyle dateText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFFFFFFFF),
 );
 
-final TextStyle yesText = TextStyle(
+TextStyle yesText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w400,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle cancelText = TextStyle(
+TextStyle cancelText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w700,
   color: Color(0xFFFFFFFF),
 );
 
-final TextStyle custName = TextStyle(
+TextStyle custName = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   fontWeight: FontWeight.w700,
   color: Color(0xFFCFAF4E),
 );
-final TextStyle totalText = TextStyle(
+TextStyle totalText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 8,
   fontWeight: FontWeight.w400,
   color: Color(0xFF808080),
 );
-final TextStyle numText = TextStyle(
+TextStyle numText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 15,
   fontWeight: FontWeight.w700,
   color: Color(0xFF0E2ED4),
 );
-final TextStyle numGreyText = TextStyle(
+TextStyle numGreyText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 15,
   fontWeight: FontWeight.w700,
   color: Color(0xFF808080),
 );
 
-final TextStyle numDesc = TextStyle(
+TextStyle numDesc = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.normal,
   color: Color(0xFF808080),
 );
-final TextStyle transText = TextStyle(
+TextStyle transText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.normal,
   color: Color(0xFF0E2ED4),
 );
 
-final TextStyle transBold = TextStyle(
+TextStyle transBold = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   fontWeight: FontWeight.w700,
-  color: const Color(0xFF000000),
+  color: Color(0xFF000000),
 );
-final TextStyle transDesc = TextStyle(
+TextStyle transDesc = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
-  color: const Color(0xFF808080),
+  color: Color(0xFF808080),
 );
-final TextStyle redeemText = TextStyle(
+TextStyle redeemText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w300,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle filterText = TextStyle(
+TextStyle filterText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 25,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
 
-final TextStyle selectDateText = TextStyle(
+TextStyle selectDateText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w700,
   color: Color(0xFF000000),
 );
 
-final TextStyle nameLabel = TextStyle(
+TextStyle nameLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 18,
   fontWeight: FontWeight.w700,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle nameDesc = TextStyle(
+TextStyle nameDesc = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
-  color: const Color(0xFF808080),
+  color: Color(0xFF808080),
 );
-final TextStyle payBtnText = TextStyle(
+TextStyle payBtnText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
   color: Color(0xFFFFFFFF),
 );
-final TextStyle changeLabel = TextStyle(
+TextStyle changeLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   fontWeight: FontWeight.w700,
-  color: const Color(0xFF000000),
+  color: Color(0xFF000000),
 );
-final TextStyle photoText = TextStyle(
+TextStyle photoText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 14,
   fontWeight: FontWeight.w400,
-  color: const Color(0xFF000000),
+  color: Color(0xFF000000),
 );
 
-final TextStyle settingsTitle = TextStyle(
+TextStyle settingsTitle = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 20,
   fontWeight: FontWeight.w700,
-  color: const Color(0xFF000000),
+  color: Color(0xFF000000),
 );
-final TextStyle settingsLabel = TextStyle(
+TextStyle settingsLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
   color: Color(0xFF000000),
 );
-final TextStyle deleteText = TextStyle(
+TextStyle deleteText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
   color: Color(0xFFCA1818),
 );
-final TextStyle settingLabel = TextStyle(
+TextStyle settingLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 20,
   fontWeight: FontWeight.w700,
   color: Color(0xFF0E2ED4),
 );
-final TextStyle invoiceLabel = TextStyle(
+TextStyle invoiceLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 18,
   fontWeight: FontWeight.w700,
 );
-final TextStyle rewardText = TextStyle(
+TextStyle rewardText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w700,
   color: Color(0xFF808080),
 );
 
-final TextStyle pointsBold = TextStyle(
+TextStyle pointsBold = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 16,
   fontWeight: FontWeight.w700,
-  color: const Color(0xFF000000),
+  color: Color(0xFF000000),
 );
-final TextStyle pointsDesc = TextStyle(
+TextStyle pointsDesc = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w400,
-  color: const Color(0xFFCFAF4E),
+  color: Color(0xFFCFAF4E),
 );
-final TextStyle rewardSm = TextStyle(
+TextStyle rewardSm = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 8,
   fontWeight: FontWeight.w400,
-  color: const Color(0xFF808080),
+  color: Color(0xFF808080),
 );
 
-final TextStyle dayText = TextStyle(
+TextStyle dayText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w700,
   color: Color(0xFFCA1818),
 );
-final TextStyle remainText = TextStyle(
+TextStyle remainText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w300,
   color: Color(0xFF808080),
 );
-final TextStyle minText = TextStyle(
+TextStyle minText = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w400,
   color: Color(0xFF808080),
 );
 
-final TextStyle greyText2 = TextStyle(
+TextStyle greyText2 = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 12,
   fontWeight: FontWeight.w300,
   color: Color(0xFF8E8E8E),
 );
 
-final TextStyle modalTextRed = TextStyle(
+TextStyle modalTextRed = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 10,
   fontWeight: FontWeight.w700,
   color: Color(0xFFCA1818),
 );
 
-final TextStyle charityLabel = TextStyle(
+TextStyle charityLabel = const TextStyle(
   fontFamily: 'Inter',
   fontSize: 20,
   fontWeight: FontWeight.w700,
@@ -503,78 +503,78 @@ final ButtonStyle btnGold = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(5),
   ),
-  primary: Color(0xFFCFAF4E),
+  backgroundColor: const Color(0xFFCFAF4E),
 );
 final ButtonStyle btnGold2 = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(5),
   ),
-  primary: Color(0xFFCFAF4E).withOpacity(0.5),
+  backgroundColor: const Color(0xFFCFAF4E).withOpacity(0.5),
 );
 final ButtonStyle btnGrey = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(5),
   ),
-  primary: Color(0xFFD9D9D9),
+  backgroundColor: const Color(0xFFD9D9D9),
 );
 final ButtonStyle selectBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(5),
-    side: BorderSide(
+    side: const BorderSide(
       color: Color(0xFF000000),
       width: 0.5,
     ),
   ),
-  primary: Color(0xFFFFFFFF),
+  backgroundColor: const Color(0xFFFFFFFF),
 );
 final ButtonStyle deSelectBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(5),
   ),
-  primary: Color(0xFFD9D9D9),
+  backgroundColor: const Color(0xFFD9D9D9),
 );
 
 final ButtonStyle approveBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(25),
   ),
-  primary: Color(0xFFCFAF4E),
+  backgroundColor: const Color(0xFFCFAF4E),
 );
 final ButtonStyle btnRed = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(5),
   ),
-  primary: Color(0xFFCA1818),
+  backgroundColor: const Color(0xFFCA1818),
 );
 final ButtonStyle followBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(25),
   ),
-  primary: Color(0xFFD9D9D9),
+  backgroundColor: const Color(0xFFD9D9D9),
 );
 final ButtonStyle unfollowBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(25),
   ),
-  primary: Color(0xFFEAA3A3),
+  backgroundColor: const Color(0xFFEAA3A3),
 );
 
 final ButtonStyle cancelBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(25),
   ),
-  primary: Color(0xFFCA1818),
+  backgroundColor: const Color(0xFFCA1818),
 );
 final ButtonStyle payBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(25),
   ),
-  primary: Color(0xFF0E2ED4),
+  backgroundColor: const Color(0xFF0E2ED4),
 );
 
 final ButtonStyle photoBtn = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(6),
   ),
-  primary: Color(0xFFF5F5F5),
+  backgroundColor: const Color(0xFFF5F5F5),
 );

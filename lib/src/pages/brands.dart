@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tl_customer/const/my_appbar.dart';
 import 'package:tl_customer/src/pages/deals.dart';
-import 'package:tl_customer/src/pages/profile.dart';
+import 'package:tl_customer/screens/profile/component/profile.dart';
 import 'package:tl_customer/src/pages/redeem.dart';
 import 'package:tl_customer/src/pages/rewards.dart';
 import 'styles.dart';
@@ -256,100 +256,6 @@ class _Brands_State extends State<Brands> {
                     ],
                   ),
                 ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-              decoration: BoxDecoration(
-                color: Color(0xFFD9D9D9),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Deals(),
-                          ),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset('assets/deals.png',
-                              color: Color.fromRGBO(0, 0, 0, 0.3)),
-                          SizedBox(height: 5),
-                          Text('Deals',
-                              style: footerText.copyWith(
-                                  color: Color.fromRGBO(0, 0, 0, 0.3))),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Rewards(),
-                          ),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset('assets/rewards.png',
-                              color: Color.fromRGBO(0, 0, 0, 0.3)),
-                          SizedBox(height: 5),
-                          Text('Rewards',
-                              style: footerText.copyWith(
-                                  color: Color.fromRGBO(0, 0, 0, 0.3))),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Image.asset('assets/redeem.png',
-                            color: Color.fromRGBO(0, 0, 0, 0.3)),
-                        SizedBox(height: 5),
-                        Text('Redeem',
-                            style: footerText.copyWith(
-                                color: Color.fromRGBO(0, 0, 0, 0.3))),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Image.asset('assets/brands.png'),
-                        SizedBox(height: 5),
-                        Text('Brands', style: footerText),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Profile(),
-                          ),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset('assets/profile.png',
-                              color: Color.fromRGBO(0, 0, 0, 0.3)),
-                          SizedBox(height: 5),
-                          Text('Profile',
-                              style: footerText.copyWith(
-                                  color: Color.fromRGBO(0, 0, 0, 0.3))),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ),
           ],

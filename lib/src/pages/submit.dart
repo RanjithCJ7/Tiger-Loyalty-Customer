@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'styles.dart';
 
 class Submit extends StatefulWidget {
@@ -11,7 +12,7 @@ class _SubmitState extends State<Submit> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => Failure(),
@@ -29,13 +30,13 @@ class _SubmitState extends State<Submit> {
           children: [
             Image.asset('assets/success.png'),
             const SizedBox(height: 15),
-            Text('DONE', style: alertTitle),
+            Text('done'.tr, style: alertTitle),
             const SizedBox(height: 20),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.height * 0.07,
+            SizedBox(
+              width: Get.width * 0.4,
+              height: Get.height * 0.07,
               child: Text(
-                'Your donation received with thanks.',
+                'donation_received'.tr,
                 style: greyText2,
                 textAlign: TextAlign.center,
               ),
@@ -57,7 +58,7 @@ class _FailureState extends State<Failure> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       // Add relevant actions upon failure if needed
     });
   }
@@ -71,27 +72,27 @@ class _FailureState extends State<Failure> {
           children: [
             Image.asset('assets/warning.png'),
             const SizedBox(height: 15),
-            Text('FAILED', style: alertTitle),
+            Text('failed'.tr, style: alertTitle),
             const SizedBox(height: 20),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.07,
+            SizedBox(
+              width: Get.width * 0.8,
+              height: Get.height * 0.07,
               child: Text(
-                'Your transaction has failed',
+                'transaction_failed'.tr,
                 style: greyText2,
                 textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 15),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.07,
+            SizedBox(
+              width: Get.width * 0.8,
+              height: Get.height * 0.07,
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
                 style: btnGrey,
-                child: Text('Try again', style: label_sm2),
+                child: Text('try_again'.tr, style: label_sm2),
               ),
             ),
           ],
