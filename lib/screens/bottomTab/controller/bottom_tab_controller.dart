@@ -39,6 +39,9 @@ class BottomTabController extends GetxController {
   ValueNotifier<bool> changeTab = ValueNotifier(true);
   TextEditingController lipaNumberController = TextEditingController();
   TextEditingController amountController = TextEditingController();
+  final TextInputFormatter _amountFormatter =
+      FilteringTextInputFormatter.digitsOnly;
+
   TextEditingController numberController = TextEditingController();
   TextEditingController reviewController = TextEditingController();
   TextEditingController pinController = TextEditingController();
@@ -84,7 +87,7 @@ class BottomTabController extends GetxController {
     }
   }
 
-  Future<bool> verifyPin() async {
+  Future<bool> verifyPin(String amount) async {
     isLoadingMerchant(true);
     var request = http.Request('POST', Uri.parse(Urls.verifyPin));
     request.headers.addAll({
@@ -98,8 +101,8 @@ class BottomTabController extends GetxController {
     final result = jsonDecode(decodeData.body);
     print("verifyPin ==> ${result}");
     if (response.statusCode == 200) {
-      makePayment(merchantDetails.value.merchantId!, amountController.text,
-              numberController.text)
+      makePayment(
+              merchantDetails.value.merchantId!, amount, numberController.text)
           .then((value) {
         if (value == true) {
           Get.close(1);
@@ -109,8 +112,9 @@ class BottomTabController extends GetxController {
           rewardsController.selectedCategory = 'business_category'.obs;
         } else {
           Get.close(1);
-          Get.to(() => const FailedTransaction())!
-              .then((value) => paymentBottomSheet());
+          Get.to(() => const FailedTransaction())!.then((value) =>
+              paymentBottomSheet(
+                  true, amountController.text.replaceAll(',', '').trim()));
         }
       });
       isLoadingMerchant(false);
@@ -137,9 +141,25 @@ class BottomTabController extends GetxController {
     print("verifyPin ==> ${result}");
     if (response.statusCode == 200) {
       Get.close(1);
-      redeemPoints(allMerchantDetails.value.merchantId!,
-          allMerchantDetails.value.rewardPoints.toString());
-      submitReviewBottomSheet(false);
+
+      if (double.parse(
+              amountController.text.replaceAll(',', '').trim().toString()) >
+          (merchantDetails.value.availablePoints ?? 0.0)) {
+        redeemPoints(allMerchantDetails.value.merchantId!,
+            merchantDetails.value.availablePoints.toString());
+        paymentBottomSheet(
+            false,
+            (double.parse(amountController.text.trim().replaceAll(',', '')) -
+                    double.parse(
+                        merchantDetails.value.availablePoints.toString()))
+                .toString());
+        print(
+            "amount remainign ==> ${double.parse(amountController.text.trim().replaceAll(',', '')) - double.parse(merchantDetails.value.availablePoints.toString())}");
+      } else {
+        redeemPoints(allMerchantDetails.value.merchantId!,
+            amountController.text.replaceAll(',', '').trim().toString());
+        submitReviewBottomSheet(false);
+      }
       rewardsController.getRewardsPoints();
       rewardsController.getRewardSummary("");
       rewardsController.selectedCategory = 'business_category'.obs;
@@ -152,7 +172,7 @@ class BottomTabController extends GetxController {
     }
   }
 
-  Future saveReward() async {
+  Future saveReward(String amount) async {
     try {
       isLoadingMerchant(true);
       var request = http.Request('POST', Uri.parse(Urls.saveRewards));
@@ -162,7 +182,8 @@ class BottomTabController extends GetxController {
       });
       request.body = json.encode({
         "merchantId": merchantDetails.value.merchantId,
-        "amount": amountController.text.trim(),
+        "amount": amount,
+        // "amount": amountController.text.replaceAll(',', '').trim(),
         "phoneNumber": Params.email
       });
 
@@ -193,7 +214,7 @@ class BottomTabController extends GetxController {
       var request = http.Request(
           'GET',
           Uri.parse(
-              "${Urls.getMerchantDetailNonReg}?lipaNumber=${lipaNumberController.text.trim()}"));
+              "${Urls.getMerchantDetailNonReg}?lipaNumber=${lipaNumberController.text.trim()}&customerPhoneNumber=${Params.email}"));
       request.headers.addAll({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${Params.userToken}'
@@ -205,6 +226,7 @@ class BottomTabController extends GetxController {
 
       if (response.statusCode == 200) {
         merchantDetails.value = MerchantDetailsModel.fromJson(result);
+        print("merchantDetails ==> ${merchantDetails.value.availablePoints}");
         isLoadingMerchant(false);
         return true;
       } else {
@@ -224,7 +246,7 @@ class BottomTabController extends GetxController {
       var request = http.Request(
           'GET',
           Uri.parse(
-              "${Urls.getMerchantDetailNonReg}?rewardNumber=${lipaNumberController.text.trim()}"));
+              "${Urls.getMerchantDetailNonReg}?rewardNumber=${lipaNumberController.text.trim()}&customerPhoneNumber=${Params.email}"));
       request.headers.addAll({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${Params.userToken}'
@@ -236,6 +258,7 @@ class BottomTabController extends GetxController {
 
       if (response.statusCode == 200) {
         merchantDetails.value = MerchantDetailsModel.fromJson(result);
+        print("merchantDetails ==> ${merchantDetails.value.availablePoints}");
         isLoadingMerchant(false);
         return true;
       } else {
@@ -256,7 +279,7 @@ class BottomTabController extends GetxController {
       var request = http.Request(
           'GET',
           Uri.parse(
-              "${Urls.getMerchantDetailNonReg}?lipaNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.trim()}"));
+              "${Urls.getMerchantDetailNonReg}?lipaNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.replaceAll(',', '').trim()}"));
       request.headers.addAll({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${Params.userToken}'
@@ -287,7 +310,7 @@ class BottomTabController extends GetxController {
       var request = http.Request(
           'GET',
           Uri.parse(
-              "${Urls.getMerchantDetailNonReg}?rewardNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.trim()}"));
+              "${Urls.getMerchantDetailNonReg}?rewardNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.replaceAll(',', '').trim()}"));
       request.headers.addAll({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${Params.userToken}'
@@ -439,7 +462,9 @@ class BottomTabController extends GetxController {
                             controller: amountController,
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
+                              FilteringTextInputFormatter.digitsOnly,
+                              _amountFormatter,
+                              CommaFormatter()
                             ],
                             decoration: InputDecoration(
                               hintText: 'amount'.tr,
@@ -522,7 +547,9 @@ class BottomTabController extends GetxController {
                               if (lipaNumberController.text.isEmpty) {
                                 Fluttertoast.showToast(
                                     msg: "lipa_required_msg".tr);
-                              } else if (amountController.text.isEmpty) {
+                              } else if (amountController.text
+                                  .replaceAll(',', '')
+                                  .isEmpty) {
                                 Fluttertoast.showToast(
                                     msg: "enter_amount_msg".tr);
                               } /* else if (bottomTabController
@@ -535,14 +562,22 @@ class BottomTabController extends GetxController {
                                   getMerchantByNumber().then((value) {
                                     if (value) {
                                       Get.close(1);
-                                      paymentBottomSheet();
+                                      paymentBottomSheet(
+                                          true,
+                                          amountController.text
+                                              .replaceAll(',', '')
+                                              .trim());
                                     }
                                   });
                                 } else {
                                   getMerchantByReward().then((value) {
                                     if (value) {
                                       Get.close(1);
-                                      paymentBottomSheet();
+                                      paymentBottomSheet(
+                                          true,
+                                          amountController.text
+                                              .replaceAll(',', '')
+                                              .trim());
                                     }
                                   });
                                 }
@@ -576,7 +611,7 @@ class BottomTabController extends GetxController {
         ));
   }
 
-  paymentBottomSheet() {
+  paymentBottomSheet(bool show, String amount) {
     Get.bottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.white,
@@ -647,9 +682,7 @@ class BottomTabController extends GetxController {
                     const SizedBox(height: 20),
                     Text('transaction_value'.tr, style: dialogTextSm),
                     const SizedBox(height: 15),
-                    Text(
-                        NumberFormat("#,##0")
-                            .format(int.parse(amountController.text)),
+                    Text(NumberFormat("#,##0").format(double.parse(amount)),
                         style: filterText),
                     const SizedBox(height: 30),
                     Text('what_to_do'.tr, style: label_sm),
@@ -660,24 +693,11 @@ class BottomTabController extends GetxController {
                       child: TextButton(
                         style: btnGrey,
                         onPressed: () {
-                          if (lipaNumberController.text.length > 6) {
-                            getMerchantByNumberPoints().then((value) {
-                              if (value) {
-                                Get.close(1);
-                                redeemBottomSheet();
-                              }
-                            });
-                          } else {
-                            getMerchantByRewardPoints().then((value) {
-                              if (value) {
-                                Get.close(1);
-                                redeemBottomSheet();
-                              }
-                            });
-                          }
+                          Get.close(1);
+                          payToCollectBottomSheet(amount);
                         },
                         child: Text(
-                          'redeem_earnedpoints'.tr,
+                          'pay_lipa'.tr,
                           style: btnGreyText,
                         ),
                       ),
@@ -689,7 +709,7 @@ class BottomTabController extends GetxController {
                       child: TextButton(
                         style: btnGrey,
                         onPressed: () {
-                          saveReward();
+                          saveReward(amount);
                           Get.close(1);
                         },
                         child: Text(
@@ -699,28 +719,43 @@ class BottomTabController extends GetxController {
                       ),
                     ),
                     const SizedBox(height: 5),
-                    SizedBox(
-                      width: Get.width * 0.8,
-                      height: Get.width * 0.12,
-                      child: TextButton(
-                        style: btnGrey,
-                        onPressed: () {
-                          Get.close(1);
-                          payToCollectBottomSheet();
-                        },
-                        child: Text(
-                          'pay_to_collect'.tr,
-                          style: btnGreyText,
+                    if (show) ...[
+                      SizedBox(
+                        width: Get.width * 0.8,
+                        height: Get.width * 0.12,
+                        child: TextButton(
+                          style: btnGrey,
+                          onPressed: () {
+                            if (lipaNumberController.text.length > 6) {
+                              getMerchantByNumberPoints().then((value) {
+                                if (value) {
+                                  Get.close(1);
+                                  redeemBottomSheet();
+                                }
+                              });
+                            } else {
+                              getMerchantByRewardPoints().then((value) {
+                                if (value) {
+                                  Get.close(1);
+                                  redeemBottomSheet();
+                                }
+                              });
+                            }
+                          },
+                          child: Text(
+                            'redeem_earnedpoints'.tr,
+                            style: btnGreyText,
+                          ),
                         ),
-                      ),
-                    ),
+                      )
+                    ],
                     const SizedBox(height: 30)
                   ],
                 ),
         ));
   }
 
-  payToCollectBottomSheet() {
+  payToCollectBottomSheet(String amount) {
     numberController.clear();
     Get.bottomSheet(
         isScrollControlled: true,
@@ -785,8 +820,8 @@ class BottomTabController extends GetxController {
                       style: pointsDesc),
                   const SizedBox(height: 10),
                   Text(
-                      NumberFormat("#,##0")
-                          .format(int.parse(amountController.text)),
+                      NumberFormat("#,##0").format(int.parse(
+                          amountController.text.replaceAll(',', '').trim())),
                       style: filterText),
                   const SizedBox(height: 10),
                   Text('amount_to_pay'.tr, style: dialogTextSm),
@@ -845,7 +880,7 @@ class BottomTabController extends GetxController {
                               msg: "enter_valid_number_msg".tr);
                         } else {
                           Get.close(1);
-                          pinBottomSheet();
+                          pinBottomSheet(amount);
                         }
                       },
                       style: btnGold2,
@@ -968,8 +1003,10 @@ class BottomTabController extends GetxController {
                                         children: [
                                           Text(
                                               NumberFormat("#,##0").format(
-                                                  int.parse(
-                                                      amountController.text)),
+                                                  int.parse(amountController
+                                                      .text
+                                                      .replaceAll(',', '')
+                                                      .trim())),
                                               style: numGreyText),
                                           Text('transaction_value'.tr,
                                               style: dialogTextSm),
@@ -1109,8 +1146,8 @@ class BottomTabController extends GetxController {
                                 const SizedBox(height: 30),
                                 Text(
                                     NumberFormat("#,##0").format(int.parse(
-                                        double.parse(allMerchantDetails
-                                                .value.rewardPoints
+                                        double.parse(merchantDetails
+                                                .value.availablePoints
                                                 .toString())
                                             .round()
                                             .toString())),
@@ -1130,8 +1167,10 @@ class BottomTabController extends GetxController {
                                         children: [
                                           Text(
                                               NumberFormat("#,##0").format(
-                                                  int.parse(
-                                                      amountController.text)),
+                                                  int.parse(amountController
+                                                      .text
+                                                      .replaceAll(',', '')
+                                                      .trim())),
                                               style: numGreyText),
                                           Text('transaction_value'.tr,
                                               style: dialogTextSm),
@@ -1543,7 +1582,7 @@ class BottomTabController extends GetxController {
         .join();
   }
 
-  pinBottomSheet() {
+  pinBottomSheet(String amount) {
     pinController.clear();
     Get.bottomSheet(
       isScrollControlled: true,
@@ -1575,7 +1614,7 @@ class BottomTabController extends GetxController {
               Text('enter_pin'.tr, style: charityLabel),
               const SizedBox(height: 30.0),
               Text(
-                  '${"to_redeem".tr} ${NumberFormat("#,##0").format(int.parse(amountController.text))} ${"points_at".tr} ${merchantDetails.value.merchantName ?? ""}',
+                  '${"to_redeem".tr} ${NumberFormat("#,##0").format(int.parse(amountController.text.replaceAll(',', '').trim()))} ${"points_at".tr} ${merchantDetails.value.merchantName ?? ""}',
                   style: desc),
               const SizedBox(height: 50),
               Row(
@@ -1623,7 +1662,7 @@ class BottomTabController extends GetxController {
                       } else if (pinController.text.length < 4) {
                         Fluttertoast.showToast(msg: "enter_pin_msg1".tr);
                       } else {
-                        verifyPin();
+                        verifyPin(amount);
                       }
                     },
                     style: btnGold2,
@@ -1684,7 +1723,7 @@ class BottomTabController extends GetxController {
               Text('enter_pin'.tr, style: charityLabel),
               const SizedBox(height: 30.0),
               Text(
-                  '${"to_redeem".tr} ${NumberFormat("#,##0").format(int.parse(amountController.text))} ${"points_at".tr} ${merchantDetails.value.merchantName ?? ""}',
+                  '${"to_redeem".tr} ${NumberFormat("#,##0").format(int.parse(amountController.text.replaceAll(',', '').trim()))} ${"points_at".tr} ${merchantDetails.value.merchantName ?? ""}',
                   style: desc),
               const SizedBox(height: 50),
               Row(
@@ -1759,5 +1798,28 @@ class BottomTabController extends GetxController {
         ],
       ),
     );
+  }
+}
+
+class CommaFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    // Add commas for every three digits from the right
+    String newText = newValue.text.replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+      (Match match) => '${match[1]},',
+    );
+
+    // Check if the text has changed
+    if (newText != newValue.text) {
+      return newValue.copyWith(
+        text: newText,
+        selection: TextSelection.collapsed(offset: newText.length),
+      );
+    }
+
+    // If no change, return the original value
+    return newValue;
   }
 }

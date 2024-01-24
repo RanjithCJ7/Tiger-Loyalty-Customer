@@ -19,6 +19,7 @@ import 'package:tl_customer/const/constant.dart';
 import 'package:tl_customer/const/urls.dart';
 import 'package:tl_customer/initial_binding.dart';
 import 'package:tl_customer/screens/bottomTab/component/bottom_tab.dart';
+import 'package:tl_customer/screens/bottomTab/controller/bottom_tab_controller.dart';
 import 'package:tl_customer/screens/bottomTab/model/make_payment_model.dart';
 import 'package:tl_customer/screens/bottomTab/model/merchant_details_model.dart';
 import 'package:tl_customer/screens/newUser/component/bottomtab_newuser.dart';
@@ -34,6 +35,8 @@ class NewuserController extends GetxController {
   TextEditingController lipaNumberController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController numberController = TextEditingController();
+  final TextInputFormatter _amountFormatter =
+      FilteringTextInputFormatter.digitsOnly;
   TextEditingController saveNumberController = TextEditingController();
   TextEditingController reviewController = TextEditingController();
   TextEditingController pinController = TextEditingController();
@@ -146,7 +149,7 @@ class NewuserController extends GetxController {
       var request = http.Request(
           'GET',
           Uri.parse(
-              "${Urls.getMerchantDetailNonReg}?lipaNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.trim()}"));
+              "${Urls.getMerchantDetailNonReg}?lipaNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.replaceAll(',', '').trim()}"));
       request.headers.addAll({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${Params.userToken}'
@@ -177,7 +180,7 @@ class NewuserController extends GetxController {
       var request = http.Request(
           'GET',
           Uri.parse(
-              "${Urls.getMerchantDetailNonReg}?rewardNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.trim()}"));
+              "${Urls.getMerchantDetailNonReg}?rewardNumber=${lipaNumberController.text.trim()}&amount=${amountController.text.replaceAll(',', '').trim()}"));
       request.headers.addAll({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${Params.userToken}'
@@ -244,8 +247,10 @@ class NewuserController extends GetxController {
         'Content-Type': 'application/json',
         // 'Authorization': 'Bearer ${Params.userToken}'
       });
-      request.body = json
-          .encode({"merchantId": id, "points": amountController.text.trim()});
+      request.body = json.encode({
+        "merchantId": id,
+        "points": amountController.text.replaceAll(',', '').trim()
+      });
 
       http.StreamedResponse response = await request.send();
       var decodeData = await http.Response.fromStream(response);
@@ -269,7 +274,7 @@ class NewuserController extends GetxController {
       });
       request.body = json.encode({
         "merchantId": merchantDetails.value.merchantId,
-        "amount": amountController.text.trim(),
+        "amount": amountController.text.replaceAll(',', '').trim(),
         "phoneNumber": saveNumberController.text.trim()
       });
 
@@ -362,7 +367,9 @@ class NewuserController extends GetxController {
                             controller: amountController,
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
+                              FilteringTextInputFormatter.digitsOnly,
+                              _amountFormatter,
+                              CommaFormatter()
                             ],
                             decoration: InputDecoration(
                               hintText: 'amount'.tr,
@@ -571,8 +578,8 @@ class NewuserController extends GetxController {
                     Text('transaction_value'.tr, style: dialogTextSm),
                     const SizedBox(height: 15),
                     Text(
-                        NumberFormat("#,##0")
-                            .format(int.parse(amountController.text)),
+                        NumberFormat("#,##0").format(int.parse(
+                            amountController.text.replaceAll(',', '').trim())),
                         style: filterText),
                     const SizedBox(height: 30),
                     Text('what_to_do'.tr, style: label_sm),
@@ -583,26 +590,12 @@ class NewuserController extends GetxController {
                       child: TextButton(
                         style: btnGrey,
                         onPressed: () {
-                          /* if (lipaNumberController.text.length > 6) {
-                            getMerchantByNumberPoints().then((value) {
-                              if (value) {
-                                Get.close(1);
-                                redeemBottomSheet();
-                              }
-                            });
-                          } else {
-                            getMerchantByRewardPoints().then((value) {
-                              if (value) {
-                                Get.close(1);
-                                redeemBottomSheet();
-                              }
-                            });
-                          } */
+                          Get.close(1);
+                          payToCollectBottomSheet();
                         },
                         child: Text(
-                          'redeem_earnedpoints'.tr,
-                          style: btnGreyText.copyWith(
-                              color: const Color(0xFFACACAC)),
+                          'pay_lipa'.tr,
+                          style: btnGreyText,
                         ),
                       ),
                     ),
@@ -630,12 +623,26 @@ class NewuserController extends GetxController {
                       child: TextButton(
                         style: btnGrey,
                         onPressed: () {
-                          Get.close(1);
-                          payToCollectBottomSheet();
+                          /* if (lipaNumberController.text.length > 6) {
+                            getMerchantByNumberPoints().then((value) {
+                              if (value) {
+                                Get.close(1);
+                                redeemBottomSheet();
+                              }
+                            });
+                          } else {
+                            getMerchantByRewardPoints().then((value) {
+                              if (value) {
+                                Get.close(1);
+                                redeemBottomSheet();
+                              }
+                            });
+                          } */
                         },
                         child: Text(
-                          'pay_to_collect'.tr,
-                          style: btnGreyText,
+                          'redeem_earnedpoints'.tr,
+                          style: btnGreyText.copyWith(
+                              color: const Color(0xFFACACAC)),
                         ),
                       ),
                     ),
@@ -710,8 +717,8 @@ class NewuserController extends GetxController {
                       style: pointsDesc),
                   const SizedBox(height: 10),
                   Text(
-                      NumberFormat("#,##0")
-                          .format(int.parse(amountController.text)),
+                      NumberFormat("#,##0").format(int.parse(
+                          amountController.text.replaceAll(',', '').trim())),
                       style: filterText),
                   const SizedBox(height: 10),
                   Text('amount_to_pay'.tr, style: dialogTextSm),
@@ -769,8 +776,12 @@ class NewuserController extends GetxController {
                           Fluttertoast.showToast(
                               msg: "enter_valid_number_msg".tr);
                         } else {
-                          makePayment(merchantDetails.value.merchantId!,
-                                  amountController.text, numberController.text)
+                          makePayment(
+                                  merchantDetails.value.merchantId!,
+                                  amountController.text
+                                      .replaceAll(',', '')
+                                      .trim(),
+                                  numberController.text)
                               .then((value) {
                             if (value == true) {
                               Get.close(1);
@@ -902,8 +913,9 @@ class NewuserController extends GetxController {
                                       children: [
                                         Text(
                                             NumberFormat("#,##0").format(
-                                                int.parse(
-                                                    amountController.text)),
+                                                int.parse(amountController.text
+                                                    .replaceAll(',', '')
+                                                    .trim())),
                                             style: numGreyText),
                                         Text('transaction_value'.tr,
                                             style: dialogTextSm),
@@ -1353,7 +1365,7 @@ class NewuserController extends GetxController {
                 Text('enter_pin'.tr, style: charityLabel),
                 const SizedBox(height: 30.0),
                 Text(
-                    '${"to_redeem".tr} ${NumberFormat("#,##0").format(int.parse(amountController.text))} ${"points_at".tr} ${merchantDetails.value.merchantName ?? ""}',
+                    '${"to_redeem".tr} ${NumberFormat("#,##0").format(int.parse(amountController.text.replaceAll(',', '').trim()))} ${"points_at".tr} ${merchantDetails.value.merchantName ?? ""}',
                     style: desc),
                 const SizedBox(height: 50),
                 Row(
@@ -1529,8 +1541,10 @@ class NewuserController extends GetxController {
                                         children: [
                                           Text(
                                               NumberFormat("#,##0").format(
-                                                  int.parse(
-                                                      amountController.text)),
+                                                  int.parse(amountController
+                                                      .text
+                                                      .replaceAll(',', '')
+                                                      .trim())),
                                               style: numGreyText),
                                           Text('transaction_value'.tr,
                                               style: dialogTextSm),

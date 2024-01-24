@@ -64,7 +64,6 @@ class SigninController extends GetxController {
         showMsg(false);
       } else {
         showMsg(true);
-        print("error ==> ${response.reasonPhrase}");
         isLoading(false);
       }
     } catch (e) {

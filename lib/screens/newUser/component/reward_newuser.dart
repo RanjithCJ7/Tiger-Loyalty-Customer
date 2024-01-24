@@ -92,19 +92,19 @@ class _RewardNewUserState extends State<RewardNewUser> {
                                               CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                                rewardsController
-                                                    .allRewardPoints
-                                                    .value
-                                                    .totalPoints
-                                                    .toString(),
-                                                /* NumberFormat("#,##0").format(
+                                                // rewardsController
+                                                //     .allRewardPoints
+                                                //     .value
+                                                //     .totalPoints
+                                                //     .toString(),
+                                                NumberFormat("#,##0").format(
                                                     int.parse(rewardsController
-                                                                .rewardSummary
+                                                                .allRewardPoints
                                                                 .value
                                                                 .totalPoints !=
                                                             null
-                                                        ? "${double.parse(rewardsController.rewardSummary.value.totalPoints.toString()).round()}"
-                                                        : "")), */
+                                                        ? "${double.parse(rewardsController.allRewardPoints.value.totalPoints.toString()).round()}"
+                                                        : "")),
                                                 style: imgNum),
                                             const SizedBox(height: 10.0),
                                             Text('total_rewards_points'.tr,

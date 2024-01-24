@@ -4,6 +4,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:tl_customer/initial_binding.dart';
 import 'package:tl_customer/screens/newUser/controller/newuser_controller.dart';
 import 'package:tl_customer/screens/signin/component/signin.dart';
+import 'package:tl_customer/widget/translate_language.dart';
 import '../../../src/pages/styles.dart';
 
 // ignore: camel_case_types
@@ -125,6 +126,28 @@ class _Home_NewUserState extends State<Home_NewUser> {
                           }
                         },
                         child: Text('make_payment'.tr, style: startBtnText),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'change_lang'.tr,
+                      style: smText,
+                    ),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: () {
+                        ChangeLanguage().changeLanguage();
+                      },
+                      child: Text(
+                        'ksw'.tr,
+                        style: boldText,
                       ),
                     ),
                   ],

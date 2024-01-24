@@ -337,7 +337,15 @@ class _RewardsScreen_State extends State<RewardsScreen> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                        "${double.parse(data.points.toString()).round()}",
+                                                        // "${double.parse(data.points.toString()).round()}",
+                                                        NumberFormat("#,##0").format(
+                                                            int.parse(rewardsController
+                                                                        .rewardSummary
+                                                                        .value
+                                                                        .totalPoints !=
+                                                                    null
+                                                                ? "${double.parse(data.points == null ? "0" : data.points.toString()).round()}"
+                                                                : "")),
                                                         style: pointsBold),
                                                     const SizedBox(height: 5),
                                                     Text(
@@ -466,7 +474,11 @@ class _RewardsScreen_State extends State<RewardsScreen> {
                   const SizedBox(height: 10),
                   Text(data.merchantName ?? "", style: pointsDesc),
                   const SizedBox(height: 15),
-                  Text("${double.parse(data.points.toString()).round()}",
+                  Text(
+                      // "${double.parse(data.points.toString()).round()}",
+                      NumberFormat("#,##0").format(int.parse(data.points != null
+                          ? "${double.parse(data.points == null ? "0" : data.points.toString()).round()}"
+                          : "")),
                       style: const TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 26,

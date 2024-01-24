@@ -243,6 +243,7 @@ Map<String, String> swahiliLanguage() => {
       "redeem_earnedpoints": "Redeem your earned points",
       "pay_cash": "Pay cash, get reward",
       "pay_to_collect": "Pay and collect reward",
+      "pay_lipa": "Pay Lipa",
       "redeem_points": "Redeem points",
       "redeem_pay": "Redeem & Pay",
       "new_transaction": "New transaction value",
