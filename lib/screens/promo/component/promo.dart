@@ -194,7 +194,7 @@ class _Promo_State extends State<Promo> {
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
-                                                  Text(filter.name),
+                                                  Text(filter.name.tr),
                                                 ],
                                               ),
                                               promoController.selectedFilter
@@ -221,12 +221,12 @@ class _Promo_State extends State<Promo> {
                                   onSelected: (value) {
                                     setState(() {
                                       promoController.selectedFilter = value;
-                                      promoController.filterList(
-                                          promoController.selectedFilter.name ==
-                                                  "All"
-                                              ? ""
-                                              : promoController
-                                                  .selectedFilter.name);
+                                      promoController.filterList(promoController
+                                                  .selectedFilter.name.tr ==
+                                              "All"
+                                          ? ""
+                                          : promoController
+                                              .selectedFilter.name.tr);
                                     });
                                   },
                                   offset: const Offset(0, 50),
@@ -249,7 +249,7 @@ class _Promo_State extends State<Promo> {
                                                     "All"
                                                 ? 'categories'.tr
                                                 : promoController
-                                                    .selectedFilter.name,
+                                                    .selectedFilter.name.tr,
                                             style: selectBtnBold),
                                         const SizedBox(width: 10),
                                         Image.asset('assets/dropdown_right.png')
@@ -466,7 +466,20 @@ class _Promo_State extends State<Promo> {
                                     .userInformation!.category ??
                                 "",
                         style: dialogTextSm),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("${"lipa_namba".tr} ",
+                            style: invoiceLabel.copyWith(
+                                fontWeight: FontWeight.w500)),
+                        Text(
+                            "# ${promoController.merchantDeatails.value.lipaNumber ?? ""}",
+                            style: invoiceLabel.copyWith(
+                                color: const Color(0xFf808080))),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -549,7 +562,7 @@ class _Promo_State extends State<Promo> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                              'TZS ${promoController.merchantDeatails.value.userInformation!.rewardTable == null && promoController.merchantDeatails.value.userInformation == null ? "0" : double.parse(promoController.merchantDeatails.value.userInformation!.rewardTable![0].min.toString()).round()}',
+                                              'TZS ${promoController.merchantDeatails.value.userInformation == null || promoController.merchantDeatails.value.userInformation!.rewardTable == null || promoController.merchantDeatails.value.userInformation == null ? "0" : double.parse(promoController.merchantDeatails.value.userInformation!.rewardTable![0].min.toString()).round()}',
                                               style: selectBtnBold),
                                           Text('min_spend'.tr, style: minText),
                                         ],
@@ -766,7 +779,7 @@ class _Promo_State extends State<Promo> {
                                           border: Border.all(
                                               color: const Color(0XFFD9D9D9))),
                                       child: SizedBox(
-                                        width: Get.width * 0.23,
+                                        width: Get.width * 0.24,
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.05,

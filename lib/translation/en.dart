@@ -250,4 +250,5 @@ Map<String, String> englishLanguage() => {
       "your_points": "Your points",
       "action": "Action",
       "select_rating": "Please select rating",
+      "lipa_namba": "Lipa",
     };

@@ -19,4 +19,27 @@ class Images {
   static String restaurant = "assets/restaurant.png";
   static String spa = "assets/spa.png";
   static String salon = "assets/salon.png";
+
+  static String bakery = "assets/bakery.png";
+  static String bar = "assets/bar.png";
+  static String beauty = "assets/beauty.png";
+  static String bookstore = "assets/bookstore.png";
+  static String butcher = "assets/butcher.png";
+  static String cofeeshop = "assets/cofeeshop.png";
+  static String cosmetics = "assets/cosmetics.png";
+  static String decor = "assets/decor.png";
+  static String electronics = "assets/electronics.png";
+  static String fashion = "assets/fashion.png";
+  static String fastfood = "assets/fastfood.png";
+  static String florists = "assets/florists.png";
+  static String groceries = "assets/groceries.png";
+  static String gym = "assets/gym.png";
+  static String hotel = "assets/hotel.png";
+  static String laundry = "assets/laundry.png";
+  static String liquorstores = "assets/liquorstores.png";
+  static String pets = "assets/pets.png";
+  static String pharmacy = "assets/pharmacy.png";
+  static String resort = "assets/resort.png";
+  static String travel = "assets/travel.png";
+  static String yoga = "assets/yoga.png";
 }

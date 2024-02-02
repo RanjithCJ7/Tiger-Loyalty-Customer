@@ -27,11 +27,33 @@ class PromoController extends GetxController {
   RxList<RewardsPointModel> brandList = <RewardsPointModel>[].obs;
   TextEditingController searchController = TextEditingController();
   List<FilterModel> filterData = [
-    FilterModel(image: Images.shopping, name: 'Shopping'),
-    FilterModel(image: Images.supermarket, name: 'Supermarket'),
-    FilterModel(image: Images.restaurant, name: 'Restaurant'),
-    FilterModel(image: Images.spa, name: 'Spa'),
-    FilterModel(image: Images.salon, name: 'Salon'),
+    FilterModel(image: Images.bakery, name: 'bakery'),
+    FilterModel(image: Images.bar, name: 'bar'),
+    FilterModel(image: Images.beauty, name: 'beauty'),
+    FilterModel(image: Images.bookstore, name: 'bookstore'),
+    FilterModel(image: Images.butcher, name: 'butcheries'),
+    FilterModel(image: Images.cofeeshop, name: 'coffee_shops'),
+    FilterModel(image: Images.cosmetics, name: 'cosmetics'),
+    FilterModel(image: Images.decor, name: 'decor'),
+    FilterModel(image: Images.electronics, name: 'electronics'),
+    FilterModel(image: Images.fashion, name: 'fashion'),
+    FilterModel(image: Images.fastfood, name: 'fast_food'),
+    FilterModel(image: Images.florists, name: 'florists'),
+    FilterModel(image: Images.groceries, name: 'groceries'),
+    FilterModel(image: Images.gym, name: 'gym'),
+    FilterModel(image: Images.hotel, name: 'hotel'),
+    FilterModel(image: Images.laundry, name: 'laundry'),
+    FilterModel(image: Images.liquorstores, name: 'liquor_stores'),
+    FilterModel(image: Images.pets, name: 'pets'),
+    FilterModel(image: Images.pharmacy, name: 'pharmacies'),
+    FilterModel(image: Images.resort, name: 'resort'),
+    FilterModel(image: Images.restaurant, name: 'restaurant'),
+    FilterModel(image: Images.salon, name: 'saloon'),
+    FilterModel(image: Images.shopping, name: 'shopping'),
+    FilterModel(image: Images.spa, name: 'spa'),
+    FilterModel(image: Images.supermarket, name: 'supermarkets'),
+    FilterModel(image: Images.travel, name: 'travel'),
+    FilterModel(image: Images.yoga, name: 'yoga'),
   ];
   FilterModel selectedFilter =
       FilterModel(image: Images.allFilter, name: 'All');
@@ -98,7 +120,7 @@ class PromoController extends GetxController {
       brandList.value = allBrandList;
     } else {
       for (var element in allBrandList) {
-        if (element.category!.toLowerCase() == category.toLowerCase()) {
+        if (element.category!.toLowerCase() == category.toLowerCase().tr) {
           brandList.add(element);
         }
       }
@@ -121,6 +143,8 @@ class PromoController extends GetxController {
 
       if (response.statusCode == 200) {
         merchantDeatails.value = AllMerchantDetailsModel.fromJson(result);
+        print(
+            "merchantDeatails ==> ${merchantDeatails.value.userInformation!.rewardTable}");
         if (merchantDeatails.value.locations!.isNotEmpty) {
           selectedLocations.value = merchantDeatails.value.locations![0];
         } else {

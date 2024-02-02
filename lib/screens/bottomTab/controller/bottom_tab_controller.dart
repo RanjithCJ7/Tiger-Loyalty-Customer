@@ -241,6 +241,7 @@ class BottomTabController extends GetxController {
   }
 
   Future<bool> getMerchantByReward() async {
+    print("Called");
     isLoadingMerchant(true);
     try {
       var request = http.Request(
@@ -267,6 +268,7 @@ class BottomTabController extends GetxController {
         return false;
       }
     } catch (e) {
+      rethrow;
       isLoadingMerchant(false);
 
       return false;
